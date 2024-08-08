@@ -60,10 +60,13 @@
   </li>
 </menu>
 
-<section class="splats-list unpad-inline center">
+<section class="splats-list unpad-inline center margin-block-start">
   <ul class="unpad margin-none flex flex-column txt-align-start center">
     <% @splats.each do | splat | %>
       <li class="flex align-center gap margin-none">
+        <div class="splat" style="--splat-color: <%= splat.color %>; --splat-size: 2cqi; <%= splat_rotation(splat) %>">
+          <svg class="splat__svg" style="fill: <%= splat.color %>;" viewBox="0 0 990 990" xmlns="http://www.w3.org/2000/svg"><path d="m0 0h990v990h-990z" fill="none" stroke="none" /><path d="m391.65 879.47c-110.52-15.95-212.21-91.86-255.92-191.23-66.78-143.65-41.62-347.61 48.08-481.17 368.33-516.3 1252.97 520.2 451.03 660.78-44.07 8.84-88.98 13.49-133.01 15.68-36.69 2-73.37 1.91-109.99-4.03z"/></svg>
+        </div>
         <%= link_to splat, class: "splat__title-link flex align-center gap flex-item-grow" do %>
           <strong><%= splat.title %></strong>
         <% end %>
