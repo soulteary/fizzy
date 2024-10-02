@@ -71,6 +71,12 @@
   }
 }
 
+.input--select {
+  --input-padding: 0.5em 0em 0.5em 0.7em;
+
+  text-align: start;
+}
+
 .input--textara {
   --input-padding: 0;
 

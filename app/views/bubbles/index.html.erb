@@ -7,18 +7,90 @@
       <span class="for-screen-reader">Buckets</span>
     <% end %>
 
-    <h1 class="txt-xx-large margin-none flex align-center gap-half">
-      Bubbled up in <%= @bucket.name %>
+    <header class="txt-align-center">
+      <h1 class="txt-large">
+        <div class="filter" data-controller="dialog" data-action="keydown.esc->dialog#close">
+          <button class="btn btn--plain filter__button"
+              data-action="click->dialog#toggle"
+              data-dialog-modal-value="true">Most active</button>
+          <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
+            <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+              <li><button class="btn btn--plain filter__button">Most active</button></li>
+              <li><button class="btn btn--plain filter__button">Most discussed</button></li>
+              <li><button class="btn btn--plain filter__button">Most boosted</button></li>
+              <li><button class="btn btn--plain filter__button">Newest</button></li>
+              <li><button class="btn btn--plain filter__button">Oldest</button></li>
+              <li><button class="btn btn--plain filter__button">Popped</button></li>
+            </menu>
+          </dialog>
+        </div>
+        in
+        <div class="filter" data-controller="dialog" data-action="keydown.esc->dialog#close">
+          <button class="btn btn--plain filter__button"
+              data-action="click->dialog#toggle"
+              data-dialog-modal-value="true"><%= @bucket.name %></button>
+          <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
+            <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+              <% Bucket.all.each do |bucket| %>
+                <li><button class="btn btn--plain filter__button"><%= bucket.name %></button></li>
+              <% end %>
+            </menu>
+          </dialog>
+        </div>
+      </h1>
 
-      <% if @tag %>
-        tagged <%= @tag.title %>
+      <h2 class="txt-medium txt-normal margin-none flex align-center gap-half">
+        <% if @tag %>
+          Tagged
 
-        <%= link_to bucket_bubbles_path(@bucket), class: "btn txt-small" do %>
-          <%= image_tag "remove.svg", aria: { hidden: true }, size: 24 %>
-          <span class="for-screen-reader">Clear</span>
+          <div class="filter" data-controller="dialog" data-action="keydown.esc->dialog#close">
+            <button class="btn btn--plain filter__button"
+                data-action="click->dialog#toggle"
+                data-dialog-modal-value="true"><%= @tag.title %></button>
+            <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
+              <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+                <% Tag.all.each do |tag| %>
+                  <li><button class="btn btn--plain filter__button"><%= tag.title %></button></li>
+                <% end %>
+              </menu>
+            </dialog>
+          </div>
+
+          <%= link_to bucket_bubbles_path(@bucket), class: "btn", style: "font-size: 0.4em;" do %>
+            <%= image_tag "remove.svg", aria: { hidden: true }, size: 24 %>
+            <span class="for-screen-reader">Clear</span>
+          <% end %>
+        <% else %>
+          with
+
+          <div class="filter" data-controller="dialog" data-action="keydown.esc->dialog#close">
+            <button class="btn btn--plain filter__button"
+                data-action="click->dialog#toggle"
+                data-dialog-modal-value="true">any tag</button>
+            <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
+              <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+                <% Tag.all.each do |tag| %>
+                  <li><button class="btn btn--plain filter__button"><%= tag.title %></button></li>
+                <% end %>
+              </menu>
+            </dialog>
+          </div>
         <% end %>
-      <% end %>
-    </h1>
+        and
+        <div class="filter" data-controller="dialog" data-action="keydown.esc->dialog#close">
+          <button class="btn btn--plain filter__button"
+              data-action="click->dialog#toggle"
+              data-dialog-modal-value="true">assigned to anyone</button>
+          <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
+            <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+              <% User.all.each do |user| %>
+                <li><button class="btn btn--plain filter__button"><%= user.name %></button></li>
+              <% end %>
+            </menu>
+          </dialog>
+        </div>
+      </h2>
+    </header>
 
     <%= button_to bucket_bubbles_path(@bucket), method: :post, params: { bubble: { title: "Untitled"} }, class: "btn btn--plain", form_class: "flex-item-justify-end" do %>
       <%= image_tag "bubble-add.svg", aria: { hidden: true }, size: 24 %>

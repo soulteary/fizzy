@@ -5,7 +5,7 @@
   border-radius: var(--panel-border-radius, 1em);
   inline-size: var(--panel-size, 60ch);
   max-inline-size: 100%;
-  padding: calc(var(--block-space) * 2);
+  padding: var(--panel-padding, calc(var(--block-space) * 2));
 
   @media (prefers-color-scheme: dark) {
     --panel-border-color: var(--color-subtle-dark);
