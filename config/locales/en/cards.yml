@@ -20,7 +20,10 @@ en:
         last_updated: "Last updated"
     steps:
       edit:
+        name_placeholder: "Name this step…"
+        save_changes: "Save changes"
         cancel_changes: "Cancel changes"
+        delete_this_step: "Delete this step"
     watches:
       watch_this: "Watch this"
       stop_watching: "Stop watching"

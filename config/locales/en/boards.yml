@@ -9,6 +9,13 @@ en:
       save_changes: "Save changes"
       save_changes_hotkey: "Save changes (%{hotkey})"
     publication:
+      public_link: "Public link"
+      turn_on_public_link_desc: "Turn on the Public link to share this board with anyone in the world. They won't need to log in and they won't be able to see anything else in Fizzy."
+      turn_off_public_link: "Turn off the public link"
+      turn_on_public_link: "Turn on the public link"
+      copy_public_link: "Copy public link"
+      add_optional_description: "Add an optional description to the public page"
+      add_public_note_placeholder: "Add a public note about this board…"
       save_changes: "Save changes"
     new:
       page_title: "Create a new board"

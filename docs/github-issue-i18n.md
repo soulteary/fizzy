@@ -34,15 +34,15 @@ Fizzy currently uses Rails’ built-in I18n API with English as the default loca
   - `en/searches.yml` – close_search
   - `en/user_mailer.yml` – email_change_confirmation
   - `en/my.yml` – menus (shortcuts, settings, people, jump, custom_views, boards, accounts), access_tokens, pins
-- **Views already using translations**: Card closure, board create/edit/columns, card display (stamp, meta), column add/maximize, users (edit, show, email, data export), sessions (new, starts), signups, webhooks (index, new, edit, show, form), tags, events empty_days, searches, reactions (partial), boards edit users, cards watches, user_mailer email_change_confirmation, notifications settings (system, install, browser platform-specific instructions), CONTRIBUTING.md i18n section.
+- **Views already using translations**: Card closure, board create/edit/columns/publication, card display (stamp, meta), card steps edit, column add/maximize, users (joins, edit, show, email, email confirmations invalid_token, data export), sessions (new, starts), signups, join_codes (new), webhooks (index, new, edit, show, form), tags, events empty_days, searches, reactions (new form aria), boards edit users, cards watches, user_mailer email_change_confirmation, notifications settings (system, install, browser platform-specific instructions), account (join_codes show/edit, imports show, settings export), CONTRIBUTING.md i18n section.
 
 ### Not Yet Done
 
 - **Locale selection**: No UI or persistence for user/account locale; app uses `I18n.default_locale` only. (Phase 3)
-- **Coverage**: The following areas still contain hardcoded user-facing strings (see **Remaining tasks** below for a concrete checklist).
+- **Coverage**: Phase 2 follow-up completed; remaining hardcoded strings in users/joins, email_addresses/confirmations, join_codes, account (join_codes, imports, settings/export), boards publication, cards steps/display meta, reactions have been moved to locale files.
 - **Additional locales**: Only `en` locale files exist; no other languages (e.g. `es`, `ja`) have been added. (Phase 4)
 - **Validation/error messages**: Model and validation messages may still be default Rails/English.
-- **Test env**: `config.i18n.raise_on_missing_translations = true` is not enabled in test (commented out in `config/environments/test.rb`).
+- **Test env**: `config.i18n.raise_on_missing_translations = true` is enabled in `config/environments/test.rb`.
 
 ## Proposed Scope
 
@@ -68,7 +68,7 @@ Fizzy currently uses Rails’ built-in I18n API with English as the default loca
 
 ### Phase 4 – Additional languages (optional)
 
-- [ ] Add at least one non-English locale (e.g. `es`, `ja`) as a proof of concept
+- [ ] Add at least one non-English locale (e.g. `zhCN`, `es`, `ja`) as a proof of concept
 - [ ] Ensure date/time and number formatting use `I18n.l` / `I18n.localize` where applicable (e.g. `local_datetime_tag` already helps with dates)
 
 ## Remaining tasks (Phase 2 follow-up)
@@ -120,6 +120,22 @@ These views/partials had hardcoded English strings; completed items are checked.
 
 - [x] **Prompts** – `app/views/prompts/**` checked; content is user data (card titles, etc.), not fixed UI strings; no i18n needed.
 - [x] **Testing**: Enable `config.i18n.raise_on_missing_translations = true` in `config/environments/test.rb`
+
+### Phase 2 follow-up (additional views)
+
+- [x] `users/joins/new.html.erb` – page title, full name placeholder, continue
+- [x] `users/email_addresses/new.html.erb` – page title, my profile back link, new email placeholder, intro, continue
+- [x] `users/email_addresses/confirmations/invalid_token.html.erb` – link expired, body, change my email, send us email
+- [x] `join_codes/new.html.erb` – join page title (interpolation), email placeholder, continue
+- [x] `cards/steps/edit.html.erb` – name placeholder, save/cancel changes, delete this step (screen reader)
+- [x] `cards/display/public_preview/_meta.html.erb` – By, Updated, Assigned to
+- [x] `cards/display/preview/_meta.html.erb` – Last updated, Assigned to (aria)
+- [x] `boards/edit/_publication.html.erb` – public link, turn on/off, copy link, optional description, placeholder, save changes
+- [x] `account/settings/_export.html.erb` – section title/intro, begin export, dialog title/body/footnote, start export, cancel
+- [x] `account/join_codes/show.html.erb` – add people, account settings, share link, generate new code confirm, copy invite link, get QR code, scan QR, done, used count, change limit
+- [x] `account/join_codes/edit.html.erb` – change usage limit, invite link, how many times, save changes, go back
+- [x] `account/imports/show.html.erb` – import status heading, in progress, completed, go to account, failed, try again
+- [x] `reactions/new.html.erb` – new reaction and add reaction aria labels
 
 ## Technical Notes
 
