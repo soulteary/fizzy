@@ -19,6 +19,7 @@ zh:
       create_custom_view: "创建自定义视图"
       home: "首页"
       nothing_matches: "没有匹配的筛选结果"
+      jump_placeholder: "输入以跳转到看板、成员、位置或标签…"
     access_tokens:
       index:
         page_title: "个人访问令牌"
@@ -32,6 +33,7 @@ zh:
         page_title: "生成个人访问令牌"
         back_to: "令牌列表"
         description_label: "访问令牌描述"
+        description_placeholder: "例如：Github"
         read: "只读"
         read_write: "读写"
         generate: "生成访问令牌"

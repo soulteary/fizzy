@@ -12,11 +12,11 @@
   <%= form_with model: @access_token, url: my_access_tokens_path, scope: :access_token, data: { controller: "form" }, html: { class: "flex flex-column gap" } do |form| %>
     <div class="flex flex-column gap-half">
       <strong><%= form.label :description, t("my.access_tokens.new.description_label") %></strong>
-      <%= form.text_field :description, required: true, autofocus: true, class: "input", placeholder: "e.g. Github", data: { action: "keydown.esc@document->form#cancel" } %>
+      <%= form.text_field :description, required: true, autofocus: true, class: "input", placeholder: t("my.access_tokens.new.description_placeholder"), data: { action: "keydown.esc@document->form#cancel" } %>
     </div>
 
     <div class="flex flex-column gap-half">
-      <strong><%= form.label :permission %></strong>
+      <strong><%= form.label :permission, t("my.access_tokens.index.permission") %></strong>
       <%= form.select :permission, options_for_select({ t("my.access_tokens.new.read") => "read", t("my.access_tokens.new.read_write") => "write"}), {}, class: "input input--select" %>
     </div>
 

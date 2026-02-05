@@ -41,6 +41,10 @@ en:
       new:
         page_title: "Import an account"
         heading: "Import a Fizzy account"
+        intro: "Create an account using data from a Fizzy export. Upload the exported .zip file below."
+        choose_file: "Choose a file…"
+        start_import: "Start Import →"
+      create_failed: "Couldn't create account."
       show:
         page_title: "Import status"
         heading: "Import status"
@@ -64,6 +68,7 @@ en:
         page_title: "Account Settings"
         only_admins_notice: "Only admins can change these settings"
       people_on_account: "People on this account"
+      role_aria: "Role: %{role}"
       invite_people: "Invite people"
       name_placeholder: "Account name…"
       save_changes_sr: "Save changes"

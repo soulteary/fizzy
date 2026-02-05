@@ -67,11 +67,11 @@ module FiltersHelper
   def sorted_by_label(sort_value)
     case sort_value
     when "newest"
-      "Newest to oldest"
+      t("filters.sort_newest_to_oldest")
     when "oldest"
-      "Oldest to newest"
+      t("filters.sort_oldest_to_newest")
     when "latest"
-      "Recently updated"
+      t("filters.sort_recently_updated")
     else
       sort_value.humanize
     end

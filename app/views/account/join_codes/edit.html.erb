@@ -28,7 +28,7 @@
     <% end %>
 
     <p class="margin-none txt-subtle">
-      This code has been used <%= @join_code.usage_count %>/<%= @join_code.usage_limit_in_database %> times.
+      <%= t("account.join_codes.show.used_count", used: @join_code.usage_count, limit: @join_code.usage_limit_in_database) %>
     </p>
 
     <%= form.button type: :submit, class: "btn btn--link center txt-medium", data: { form_target: "submit" } do %>

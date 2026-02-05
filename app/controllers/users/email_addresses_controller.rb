@@ -24,7 +24,7 @@ class Users::EmailAddressesController < ApplicationController
 
     def reject_if_email_locked
       if Current.identity.respond_to?(:email_locked?) && Current.identity.email_locked?
-        flash[:alert] = "Email address cannot be changed for this account."
+        flash[:alert] = I18n.t("users.email_addresses.cannot_change")
         redirect_to edit_user_path(Current.user)
       end
     end

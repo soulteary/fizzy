@@ -18,7 +18,7 @@
 
   <% if column.has_more_events? %>
     <div class="events__column-footer fill-highlight txt-x-small border-radius" style="grid-column-start: <%= column.index %>">
-      Showing the 100 most recent (<%= column.hidden_events_count %> are hidden)
+      <%= t("events.day_timeline.showing_recent", hidden: column.hidden_events_count) %>
     </div>
   <% end %>
 </div>

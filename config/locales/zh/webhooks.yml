@@ -16,6 +16,7 @@ zh:
       create: "创建 Webhook"
       go_back: "返回"
       url_title: "须为 http:// 或 https:// 的 URL"
+      url_placeholder: "https://example.com"
     edit:
       name_placeholder: "为 Webhook 命名…"
       events: "事件"

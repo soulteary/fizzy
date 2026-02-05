@@ -19,13 +19,21 @@
   <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "fizzy/saas", "data-turbo-track": "reload" if Fizzy.saas? %>
   <%= javascript_importmap_tags %>
+  <%= javascript_tag nonce: true do %>
+    window.localTimeStrings = {
+      today: <%= t("shared.time.today").to_json.html_safe %>,
+      yesterday: <%= t("shared.time.yesterday").to_json.html_safe %>
+    };
+    window.localTimeLocale = <%= I18n.locale.to_s.to_json.html_safe %>;
+  <% end %>
 
   <%= tenanted_action_cable_meta_tag %>
   <%= render "layouts/shared/user_css" %>
 
   <%= yield :head %>
 
-  <link rel="manifest" href="<%= pwa_manifest_path(format: :json) %>">
+  <%# Root-level URL so Forward Auth does not redirect manifest fetch (avoids CORS) %>
+  <link rel="manifest" href="<%= pwa_manifest_root_url %>">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>

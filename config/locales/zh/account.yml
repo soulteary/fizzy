@@ -41,6 +41,10 @@ zh:
       new:
         page_title: "导入账户"
         heading: "导入 Fizzy 账户"
+        intro: "使用 Fizzy 导出数据创建账户。请在下方向上传导出的 .zip 文件。"
+        choose_file: "选择文件…"
+        start_import: "开始导入 →"
+      create_failed: "无法创建账户。"
       show:
         page_title: "导入状态"
         heading: "导入状态"
@@ -64,6 +68,7 @@ zh:
         page_title: "账户设置"
         only_admins_notice: "仅管理员可修改这些设置"
       people_on_account: "此账户的成员"
+      role_aria: "角色：%{role}"
       invite_people: "邀请成员"
       name_placeholder: "账户名称…"
       save_changes_sr: "保存"

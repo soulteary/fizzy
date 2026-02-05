@@ -1,5 +1,5 @@
 <% @page_title = @user.name %>
-<% me_or_you = Current.user == @user ? "me" : @user.first_name %>
+<% me_or_you = Current.user == @user ? t("cards.me") : @user.first_name %>
 
 <div class="settings settings--profile">
   <div class="settings__panel panel shadow txt-align-center">

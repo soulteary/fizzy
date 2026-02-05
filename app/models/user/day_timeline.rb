@@ -30,11 +30,11 @@ class User::DayTimeline
   end
 
   def added_column
-    @added_column ||= build_column(:added, "Added", 1, events.where(action: %w[card_published card_reopened]))
+    @added_column ||= build_column(:added, I18n.t("columns.added"), 1, events.where(action: %w[card_published card_reopened]))
   end
 
   def updated_column
-    @updated_column ||= build_column(:updated, "Updated", 2, events.where.not(action: %w[card_published card_closed card_reopened]))
+    @updated_column ||= build_column(:updated, I18n.t("columns.updated"), 2, events.where.not(action: %w[card_published card_closed card_reopened]))
   end
 
   def closed_column

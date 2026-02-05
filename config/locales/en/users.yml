@@ -1,5 +1,8 @@
 en:
   users:
+    roles:
+      admin: "Administrator"
+      member: "Member"
     edit:
       page_title: "Edit profile"
       back_to: "profile"
@@ -17,6 +20,7 @@ en:
         full_name_placeholder: "Full name"
         continue: "Continue"
     email_addresses:
+      cannot_change: "Email address cannot be changed for this account."
       already_in_account: "You already have a user in this account with that email address"
       confirm_page_title: "Confirm your new email address"
       confirm_show:
@@ -74,6 +78,9 @@ en:
       token_no_longer_visible: "Token is no longer visible"
     my_profile: "My profile"
     devices_heading: "Devices"
+    session_transfer_label: "Link to automatically log in on another device."
+    display_auto_login_qr_sr: "Display auto-login QR code"
+    copy_auto_login_link_sr: "Copy auto-login link"
     close_dialog_sr: "Close dialog"
     appearance_heading: "Appearance"
     theme_always_light: "Always light"

@@ -2,7 +2,7 @@
   <strong class="txt-uppercase"><%= t("cards.subscribers") %></strong>
 
   <p class="margin-none-block-start margin-block-end-half">
-    <%= pluralize(card.watchers.active.count, "person") %> will be notified when someone comments on this.
+    <%= t("cards.comments.watchers_will_be_notified", count: card.watchers.active.count) %>
   </p>
 
   <div class="flex align-center flex-wrap gap-half max-width txt-normal">

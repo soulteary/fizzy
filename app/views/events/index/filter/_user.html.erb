@@ -5,7 +5,7 @@
         controller: "dialog filter multi-selection-combobox",
         action: "keydown.esc->dialog#close click@document->dialog#closeOnClickOutside turbo:morph@window->multi-selection-combobox#refresh dialog:close@document->filter#clearInput",
         filter_show: user_filtering.show_creators?,
-        multi_selection_combobox_no_selection_label_value: "everyone" } do %>
+        multi_selection_combobox_no_selection_label_value: t("filters.everyone") } do %>
   <button type="button" class="btn borderless btn--plain events__filter-select" data-action="click->dialog#toggle:stop">
     <span data-multi-selection-combobox-target="label">
     </span>

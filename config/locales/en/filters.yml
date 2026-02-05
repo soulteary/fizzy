@@ -12,6 +12,8 @@ en:
     sort_by: "Sort by…"
     clear_all: "Clear all"
     status: "Status…"
+    cards_ids: "Cards %{ids}"
+    created_aria: "Created…"
     filter_by: "Filter by…"
     filter_by_status: "Filter by status…"
     added_by: "Added by"
@@ -21,16 +23,21 @@ en:
     assigned_to: "Assigned to"
     assigned_to_ellipsis: "Assigned to…"
     no_one: "No one"
+    everyone: "Everyone"
     delete_custom_view: "Delete custom view"
     save_custom_view: "Save custom view"
     create_custom_view: "Create a custom view"
-  my:
-    shortcuts:
-      golden_cards: "Golden cards"
-      stalled_cards: "Stalled cards"
-      added_today: "Added today"
-      done_today: "Done today"
-    settings:
-      all_notifications: "All notifications"
-    custom_views: "Custom views"
-    create_custom_view: "Create a custom view"
+    sort_newest_to_oldest: "Newest to oldest"
+    sort_oldest_to_newest: "Oldest to newest"
+    sort_recently_updated: "Recently updated"
+    all_boards: "all boards"
+    my:
+      shortcuts:
+        golden_cards: "Golden cards"
+        stalled_cards: "Stalled cards"
+        added_today: "Added today"
+        done_today: "Done today"
+      settings:
+        all_notifications: "All Notifications"
+      custom_views: "Custom views"
+      create_custom_view: "Create a custom view"

@@ -3,14 +3,16 @@ zh:
     index:
       page_title: "首页"
       activity: "动态"
-      activity_in: "内"
-      activity_across: "全部"
+      activity_in: "（所选看板）"
+      activity_across: "（全部看板）"
       latest_activity: "最新动态"
       add_a_card: "添加卡片"
       add_a_board: "添加看板"
     card_number_sr: "卡片编号"
     creator_you: "你"
     creator_yourself: "你"
+    day_timeline:
+      showing_recent: "显示最近 100 条（%{hidden} 条已隐藏）"
     empty_days:
       no_more_activity: "没有更多动态"
       no_activity: "无动态"

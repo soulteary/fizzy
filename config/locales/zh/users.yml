@@ -1,5 +1,8 @@
 zh:
   users:
+    roles:
+      admin: "管理员"
+      member: "成员"
     edit:
       page_title: "编辑资料"
       back_to: "资料"
@@ -17,6 +20,7 @@ zh:
         full_name_placeholder: "姓名"
         continue: "继续"
     email_addresses:
+      cannot_change: "此账户的邮箱地址无法修改。"
       already_in_account: "此账户中已有使用该邮箱的用户"
       confirm_page_title: "确认你的新邮箱"
       confirm_show:
@@ -74,6 +78,9 @@ zh:
       token_no_longer_visible: "令牌已不可见"
     my_profile: "我的资料"
     devices_heading: "设备"
+    session_transfer_label: "用于在另一台设备上自动登录的链接。"
+    display_auto_login_qr_sr: "显示自动登录二维码"
+    copy_auto_login_link_sr: "复制自动登录链接"
     close_dialog_sr: "关闭对话框"
     appearance_heading: "外观"
     theme_always_light: "始终浅色"

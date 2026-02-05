@@ -3,6 +3,12 @@ import { differenceInDays, secondsToDate } from "helpers/date_helpers"
 
 const DEFAULT_LOCALE = "en-US"
 
+function localeForIntl() {
+  const locale = typeof window.localTimeLocale === "string" ? window.localTimeLocale : document.documentElement?.lang || "en"
+  if (locale.startsWith("zh")) return "zh-CN"
+  return locale
+}
+
 export default class extends Controller {
   static targets = [ "time", "date", "datetime", "shortdate", "ago", "indays", "daysago", "agoorweekday", "timeordate" ]
   static values = { refreshInterval: Number }
@@ -11,17 +17,17 @@ export default class extends Controller {
   #timer
 
   initialize() {
-    this.timeFormatter = new Intl.DateTimeFormat(DEFAULT_LOCALE, { timeStyle: "short" })
-    this.dateFormatter = new Intl.DateTimeFormat(DEFAULT_LOCALE, { dateStyle: "long" })
-    this.shortdateFormatter = new Intl.DateTimeFormat(DEFAULT_LOCALE, { month: "short", day: "numeric" })
-    this.datetimeFormatter = new Intl.DateTimeFormat(DEFAULT_LOCALE, { timeStyle: "short", dateStyle: "short" })
+    const locale = localeForIntl()
+    this.timeFormatter = new Intl.DateTimeFormat(locale, { timeStyle: "short" })
+    this.dateFormatter = new Intl.DateTimeFormat(locale, { dateStyle: "long" })
+    this.shortdateFormatter = new Intl.DateTimeFormat(locale, { month: "short", day: "numeric" })
+    this.datetimeFormatter = new Intl.DateTimeFormat(locale, { timeStyle: "short", dateStyle: "short" })
     this.agoFormatter = new AgoFormatter()
     this.daysagoFormatter = new DaysAgoFormatter()
-    this.datewithweekdayFormatter = new Intl.DateTimeFormat(DEFAULT_LOCALE, { weekday: "long", month: "long", day: "numeric" })
-    this.datewithweekdayFormatter = new Intl.DateTimeFormat(DEFAULT_LOCALE, { weekday: "long", month: "long", day: "numeric" })
+    this.datewithweekdayFormatter = new Intl.DateTimeFormat(locale, { weekday: "long", month: "long", day: "numeric" })
     this.indaysFormatter = new InDaysFormatter()
-    this.agoorweekdayFormatter = new DaysAgoOrWeekdayFormatter()
-    this.timeordateFormatter = new TimeOrDateFormatter()
+    this.agoorweekdayFormatter = new DaysAgoOrWeekdayFormatter(locale)
+    this.timeordateFormatter = new TimeOrDateFormatter(locale)
   }
 
   connect() {
@@ -123,24 +129,35 @@ class AgoFormatter {
   }
 }
 
+function relativeTimeStrings() {
+  return typeof window.localTimeStrings === "object" && window.localTimeStrings
+    ? window.localTimeStrings
+    : { today: "today", yesterday: "yesterday" }
+}
+
 class DaysAgoFormatter {
   format(date) {
     const days = differenceInDays(date, new Date())
+    const strings = relativeTimeStrings()
 
-    if (days <= 0) return styleableValue("today")
-    if (days === 1) return styleableValue("yesterday")
+    if (days <= 0) return styleableValue(strings.today || "today")
+    if (days === 1) return styleableValue(strings.yesterday || "yesterday")
     return `${styleableValue(days)} days ago`
   }
 }
 
 class DaysAgoOrWeekdayFormatter {
+  constructor(locale = DEFAULT_LOCALE) {
+    this.locale = locale
+  }
+
   format(date) {
     const days = differenceInDays(date, new Date())
 
     if (days <= 1) {
       return new DaysAgoFormatter().format(date)
     } else {
-      return new Intl.DateTimeFormat(DEFAULT_LOCALE, { weekday: "long", month: "long", day: "numeric" }).format(date)
+      return new Intl.DateTimeFormat(this.locale, { weekday: "long", month: "long", day: "numeric" }).format(date)
     }
   }
 }
@@ -156,13 +173,17 @@ class InDaysFormatter {
 }
 
 class TimeOrDateFormatter {
+  constructor(locale = DEFAULT_LOCALE) {
+    this.locale = locale
+  }
+
   format(date) {
     const days = differenceInDays(date, new Date())
 
     if (days >= 1) {
-      return new Intl.DateTimeFormat(DEFAULT_LOCALE, { month: "short", day: "numeric" }).format(date)
+      return new Intl.DateTimeFormat(this.locale, { month: "short", day: "numeric" }).format(date)
     } else {
-      return new Intl.DateTimeFormat(DEFAULT_LOCALE, { timeStyle: "short" }).format(date)
+      return new Intl.DateTimeFormat(this.locale, { timeStyle: "short" }).format(date)
     }
   }
 }

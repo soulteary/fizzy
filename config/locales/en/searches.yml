@@ -6,3 +6,4 @@ en:
     page_title_with_query: "Search results for \"%{query}\""
     search_fizzy: "Search Fizzy"
     placeholder: "Find something…"
+    no_matches: "No matches"

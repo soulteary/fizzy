@@ -16,6 +16,7 @@ en:
       create: "Create Webhook"
       go_back: "Go back"
       url_title: "Must be an http:// or https:// URL"
+      url_placeholder: "https://example.com"
     edit:
       name_placeholder: "Name your Webhook…"
       events: "Events"

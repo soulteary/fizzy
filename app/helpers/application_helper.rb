@@ -1,4 +1,11 @@
 module ApplicationHelper
+  # Root-level manifest URL so Forward Auth does not redirect (avoids CORS).
+  # Override via PWA_MANIFEST_BASE_URL when the public origin differs (e.g. behind proxy).
+  def pwa_manifest_root_url
+    base = ENV["PWA_MANIFEST_BASE_URL"].presence || request.base_url
+    base.to_s.sub(/\/*\z/, "") + "/manifest.json"
+  end
+
   def available_locales_for_select
     Rails.application.config.i18n.available_locales.map { |locale| [ t("locales.name.#{locale}", default: locale.to_s), locale.to_s ] }
   end

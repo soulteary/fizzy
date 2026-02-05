@@ -6,3 +6,4 @@ zh:
     page_title_with_query: "「%{query}」的搜索结果"
     search_fizzy: "搜索 Fizzy"
     placeholder: "搜索…"
+    no_matches: "没有匹配结果"

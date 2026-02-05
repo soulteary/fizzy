@@ -29,7 +29,7 @@ module CardsHelper
   end
 
   def card_drafted_or_added(card)
-    card.drafted? ? "Drafted" : "Added"
+    card.drafted? ? t("cards.drafted") : t("cards.added")
   end
 
   def card_social_tags(card)
@@ -41,7 +41,7 @@ module CardsHelper
 
   def button_to_remove_card_image(card)
     button_to(card_image_path(card), method: :delete, class: "btn", data: { controller: "tooltip", action: "dialog#close" }) do
-      icon_tag("trash") + tag.span("Remove background image", class: "for-screen-reader")
+      icon_tag("trash") + tag.span(t("cards.remove_background_image"), class: "for-screen-reader")
     end
   end
 end

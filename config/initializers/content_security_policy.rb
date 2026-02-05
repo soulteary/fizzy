@@ -7,14 +7,17 @@
 # settings. This allows fizzy-saas (or other deployments) to extend the base policy
 # without duplicating it.
 #
-# ENV vars (space-separated sources):
+# ENV vars (space-separated sources, set at container start if needed):
 #   CSP_DEFAULT_SRC, CSP_SCRIPT_SRC, CSP_STYLE_SRC, CSP_CONNECT_SRC, CSP_FRAME_SRC,
-#   CSP_IMG_SRC, CSP_FONT_SRC, CSP_MEDIA_SRC, CSP_WORKER_SRC, CSP_FRAME_ANCESTORS,
-#   CSP_FORM_ACTION, CSP_REPORT_URI, CSP_REPORT_ONLY, DISABLE_CSP
+#   CSP_IMG_SRC, CSP_FONT_SRC, CSP_MEDIA_SRC, CSP_WORKER_SRC, CSP_MANIFEST_SRC,
+#   CSP_FRAME_ANCESTORS, CSP_FORM_ACTION, CSP_REPORT_URI, CSP_REPORT_ONLY, DISABLE_CSP
+#
+# Example for Forward Auth / Stargate login page manifest:
+#   CSP_MANIFEST_SRC=https://auth.lab.dev
 #
 # config.x.content_security_policy.* (string, space-separated string, or array):
 #   script_src, style_src, connect_src, frame_src, img_src, font_src, media_src,
-#   worker_src, frame_ancestors, form_action, report_uri, report_only
+#   worker_src, manifest_src, frame_ancestors, form_action, report_uri, report_only
 
 Rails.application.configure do
   # Helper to get additional CSP sources from ENV or config.x.
@@ -68,6 +71,9 @@ Rails.application.configure do
 
     policy.form_action :self, *sources.(:form_action)
     policy.frame_ancestors :self, *sources.(:frame_ancestors)
+
+    # PWA manifest: self + extra origins via CSP_MANIFEST_SRC (e.g. Forward Auth origin)
+    policy.manifest_src :self, *sources.(:manifest_src)
 
     # Specify URI for violation reports (e.g., Sentry CSP endpoint)
     policy.report_uri report_uri if report_uri

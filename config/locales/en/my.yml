@@ -19,6 +19,7 @@ en:
       create_custom_view: "Create a custom view"
       home: "Home"
       nothing_matches: "Nothing matches that filter"
+      jump_placeholder: "Type to jump to a board, person, place, or tag…"
     access_tokens:
       index:
         page_title: "Personal access tokens"
@@ -32,6 +33,7 @@ en:
         page_title: "Generate a personal access token"
         back_to: "tokens"
         description_label: "Access token description"
+        description_placeholder: "e.g. Github"
         read: "Read"
         read_write: "Read + Write"
         generate: "Generate access token"

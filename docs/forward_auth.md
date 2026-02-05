@@ -71,6 +71,10 @@ If both are configured, the request must satisfy both (IP in list and secret hea
 
 4. Ensure requests to Fizzy go through Traefik so the client IP seen by Fizzy is the proxy (and in your trusted range), and the headers are present.
 
+5. **PWA manifest**  
+   Fizzy serves the web app manifest at the **root** path (`/manifest.json`) so the gateway can allow it without auth. Configure the gateway (e.g. Stargate or Traefik) to allow unauthenticated `GET /manifest.json` (and optionally `GET /service-worker`) for the Fizzy host. Otherwise the browser’s manifest request is redirected to the login page, which causes CORS errors and breaks PWA install.  
+   If the public origin differs from the request host (e.g. behind a proxy), set `PWA_MANIFEST_BASE_URL` to the public origin (e.g. `https://fizzy.lab.dev`) so the manifest link in the HTML points to the correct URL.
+
 ## Behaviour summary
 
 - **Authentication order**  
