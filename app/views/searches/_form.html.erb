@@ -1,9 +1,9 @@
 <%= form_with url: search_path, method: :get, class: "search__form flex align-center justify-center gap-half", data: { bar_target: "form", turbo_frame: defined?(target_turbo_frame) ? target_turbo_frame : nil } do |form| %>
-  <%= form.label :q, "Search Fizzy", class: "font-weight-black txt-nowrap" %>
+  <%= form.label :q, t("searches.search_fizzy"), class: "font-weight-black txt-nowrap" %>
   <%= text_field_tag :q, query_terms,
         class: "search__input input",
         type: "search",
-        placeholder: "Find something…",
+        placeholder: t("searches.placeholder"),
         autocomplete: "off",
         autofocus: true,
         data: {

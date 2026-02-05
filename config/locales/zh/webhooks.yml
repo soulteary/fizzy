@@ -1,0 +1,39 @@
+zh:
+  webhooks:
+    index:
+      page_title: "Webhooks"
+      back_to: "Webhooks"
+      intro: "当看板中发生事件时，Webhook 可通知其他应用。你需要选择订阅的事件并提供一个用于接收数据的 URL。"
+      example: "例如，可在 Fizzy 有新卡片时向 Basecamp 的 Campfire 聊天室发送消息。"
+      set_up_new: "新建 Webhook"
+    new:
+      page_title: "设置 Webhook"
+      name_placeholder: "为此 Webhook 命名…"
+      payload_url: "Payload URL"
+      payload_url_hint: "接收 Fizzy 推送数据的应用 URL。"
+      events: "事件"
+      events_hint: "在以下情况时向 Payload URL 发起请求："
+      create: "创建 Webhook"
+      go_back: "返回"
+      url_title: "须为 http:// 或 https:// 的 URL"
+    edit:
+      name_placeholder: "为 Webhook 命名…"
+      events: "事件"
+      events_hint: "在以下情况时向 Payload URL 发起请求："
+      save_changes: "保存"
+      go_back: "返回"
+    show:
+      edit: "编辑"
+      secret: "密钥"
+      secret_description: "我们会在每次请求中发送 %{header} 头，你可以用此密钥对请求体做 %{sha256} 生成 %{hmac}，以验证请求来自我们。"
+      reactivate: "重新启用"
+      subscribed_to: "已订阅"
+      no_events: "此 Webhook 未订阅任何事件，将不会触发。"
+      deliveries: "推送记录"
+      no_deliveries: "此 Webhook 尚未被触发"
+    form:
+      enable_all: "全部启用"
+      disable_all: "全部禁用"
+    webhook:
+      remove: "移除 %{name}"
+      remove_confirm: "确定要永久移除此 Webhook 吗？"

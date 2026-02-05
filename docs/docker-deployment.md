@@ -175,3 +175,42 @@ services:
 volumes:
   fizzy:
 ```
+
+## Troubleshooting
+
+### SQLite: "database disk image is malformed"
+
+**Symptom**: App logs show `SQLite3::CorruptException: database disk image is malformed`, often when Solid Queue workers start (e.g. "Error registering Worker").
+
+**Cause**: The SQLite file under the mounted volume (`/rails/storage`, e.g. `./fizzy_storage` on the host) has become corrupted. Common causes with Docker:
+
+- Container or host was stopped during a write (power loss, `docker kill`, etc.)
+- Volume is on a filesystem or network share that doesn’t handle SQLite’s locking/fsync well (e.g. some NFS or Docker Desktop bind-mount edge cases)
+- Multiple writers (Puma + Solid Queue workers) under load on a fragile storage layer
+
+**Fix** (data in the affected DB will be lost unless you restore from backup):
+
+1. Stop the app: `docker compose down` (or stop the app container).
+2. On the host, go to the storage directory (e.g. `./fizzy_storage` next to your `docker-compose.yml`).
+3. **Backup** the directory if you might need to recover data:  
+   `cp -a fizzy_storage fizzy_storage.bak`
+4. Remove the corrupted SQLite file(s). For production with SQLite you typically have:
+   - `production.sqlite3` (main app)
+   - `production_queue.sqlite3` (Solid Queue)
+   - `production_cable.sqlite3` (Action Cable)
+   The stack trace usually points at the **queue** DB when Solid Queue fails to register; if so, remove at least `production_queue.sqlite3`. If the main app also errors on boot, remove `production.sqlite3` as well (and restore from backup if you have one).
+5. Start the app again: `docker compose up -d`.
+6. Recreate the DB and run migrations inside the container:
+   ```sh
+   docker compose exec app bin/rails db:create db:migrate
+   ```
+   If only the queue DB was removed, run the queue migrations:
+   ```sh
+   docker compose exec app bin/rails db:migrate:queue
+   ```
+
+**Reducing the chance of recurrence**:
+
+- Prefer a **named volume** (e.g. `fizzy_storage:/rails/storage`) over a bind mount to a network or quirky filesystem.
+- Ensure the host has enough disk space and avoid killing the container during heavy write activity.
+- For production, consider using **MySQL** (`DATABASE_ADAPTER=mysql` and the `db` service in `docker-compose.yml`) for better concurrency and durability.

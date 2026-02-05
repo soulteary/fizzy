@@ -1,5 +1,7 @@
 en:
   tags:
+    menu_title: "Tags"
     index:
       title: "All tags"
       delete: "Delete"
+      delete_confirm: "Are you sure?"

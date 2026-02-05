@@ -1,0 +1,4 @@
+# 中文语言包根文件
+# 与 config/locales/en.yml 对应
+zh:
+  hello: "你好世界"

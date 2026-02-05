@@ -7,6 +7,7 @@ en:
     filter_these_cards: "Filter these cards… [F]"
     filter_placeholder: "Filter…"
     board_ellipsis: "Board…"
+    person_ellipsis: "Person…"
     tagged: "Tagged…"
     sort_by: "Sort by…"
     clear_all: "Clear all"

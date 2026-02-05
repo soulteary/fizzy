@@ -20,8 +20,8 @@
         class: "reaction__delete btn btn--negative flex-item-justify-end",
         data: { action: "reaction-delete#perform", reaction_delete_target: "button" } do %>
     <%= icon_tag "trash" %>
-    <span class="for-screen-reader">Delete this reaction</span>
+    <span class="for-screen-reader"><%= t("reactions.reaction.delete_this") %></span>
   <% end %>
 </div>
 
-<span id="delete_reaction_accessible_label" class="for-screen-reader">Press enter to delete this reaction</span>
+<span id="delete_reaction_accessible_label" class="for-screen-reader"><%= t("reactions.reaction.press_enter_to_delete") %></span>

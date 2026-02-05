@@ -1,4 +1,4 @@
-<% @page_title = "Choose an account" %>
+<% @page_title = t("sessions.menus.show.page_title") %>
 
 <% cache [ Current.identity, @accounts ] do %>
   <section
@@ -7,7 +7,7 @@
   >
     <% if @accounts.any? %>
       <h1 class="txt-x-large font-weight-black txt-tight-lines margin-none">
-        Your Fizzy accounts
+        <%= t("sessions.menus.show.your_accounts") %>
       </h1>
       <menu class="popup__list pad border-radius border" style="--block-space: var(--inline-space);">
         <% @accounts.each do |account| %>
@@ -20,16 +20,16 @@
         <% end %>
       </menu>
     <% else %>
-      <h1 class="txt-x-large font-weight-black margin-none">Hmm...</h1>
-      <p class="margin-none-block-start">You don’t have any Fizzy accounts.</p>
+      <h1 class="txt-x-large font-weight-black margin-none"><%= t("sessions.menus.show.hmm") %></h1>
+      <p class="margin-none-block-start"><%= t("sessions.menus.show.no_accounts") %></p>
     <% end %>
 
     <%= link_to new_signup_path, class: "btn center txt-small margin-block-start", data: { turbo_prefetch: false } do %>
-      <span>Sign up for a new Fizzy account</span>
+      <span><%= t("sessions.menus.show.sign_up_new") %></span>
     <% end %>
 
     <%= link_to new_account_import_path, class: "btn btn--plain txt-link center txt-small", data: { turbo_prefetch: false } do %>
-      <span>Import an exported account</span>
+      <span><%= t("sessions.menus.show.import_exported") %></span>
     <% end %>
   </section>
 <% end %>

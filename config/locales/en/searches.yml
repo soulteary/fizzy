@@ -1,3 +1,8 @@
 en:
   searches:
+    bar_label: "Search"
     close_search: "Close search"
+    page_title: "Search"
+    page_title_with_query: "Search results for \"%{query}\""
+    search_fizzy: "Search Fizzy"
+    placeholder: "Find something…"

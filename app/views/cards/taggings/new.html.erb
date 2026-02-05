@@ -22,9 +22,9 @@
       <%= render collection: @tags, partial: "tag", locals: { card: @card } %>
 
       <li class="popup__item" data-navigable-list-target="item">
-        <%= button_tag "Create a new tag", type: "submit", form: dom_id(@card, :tags_form), class: "btn popup__btn", data: { form_target: "submit" } do %>
+        <%= button_tag t("cards.create_new_tag"), type: "submit", form: dom_id(@card, :tags_form), class: "btn popup__btn", data: { form_target: "submit" } do %>
           <%= icon_tag "add" %>
-          <span>Create tag</span>
+          <span><%= t("cards.create_tag") %></span>
         <% end %>
       </li>
     </ul>

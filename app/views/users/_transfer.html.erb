@@ -2,7 +2,7 @@
   <% url = session_transfer_url(user.identity.transfer_id, script_name: nil) %>
 
   <header>
-    <h2 class="divider">Devices</h2>
+    <h2 class="divider"><%= t("users.devices_heading") %></h2>
     <p class="margin-none" id="session_transfer_label">Link to automatically log in on another device.</p>
   </header>
 
@@ -21,7 +21,7 @@
         <form method="dialog" class="margin-block-start flex justify-center">
           <button class="btn" data-controller="tooltip">
             <%= icon_tag "remove" %>
-            <span class="for-screen-reader">Close dialog</span>
+            <span class="for-screen-reader"><%= t("users.close_dialog_sr") %></span>
           </button>
         </form>
       </dialog>

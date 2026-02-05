@@ -9,7 +9,7 @@
 <article class="panel panel--wide center txt-align-start" style="view-transition-name: <%= dom_id(@webhook) %>">
   <%= form_with model: @webhook, url: @webhook, method: :put, data: { controller: "form" }, html: { class: "flex flex-column gap" } do |form| %>
     <h2 class="txt-large margin-none">
-      <%= form.text_field :name, required: true, autofocus: true, class: "input full-width", placeholder: "Name your Webhook…", data: { action: "keydown.esc@document->form#cancel" } %>
+      <%= form.text_field :name, required: true, autofocus: true, class: "input full-width", placeholder: t("webhooks.edit.name_placeholder"), data: { action: "keydown.esc@document->form#cancel" } %>
     </h2>
 
     <div class="flex flex-column gap-half">

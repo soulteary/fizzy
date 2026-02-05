@@ -1,6 +1,8 @@
 en:
   account:
     entropy_section_title: "Auto close"
+    entropy_days_label: "Days until auto-close"
+    entropy_days_short: "Days"
     entropy_intro_html: "Fizzy doesn't let stale cards stick around forever. Cards automatically move to \"Not Now\" if there is no activity for a specific period of time. <em>This is the default, global setting — you can override it on each board.</em>"
     saved: "Saved"
     saved_removed_from_board: "Saved (you were removed from the board)"
@@ -9,6 +11,10 @@ en:
     deleted: "Account deleted"
     account_settings: "Account Settings"
     join_codes:
+      inactive:
+        page_title: "That code is all used up"
+        body: "Ask someone from %{name} to send you a new link or increase the limit."
+        ok: "OK"
       join:
         page_title: "Join %{name} in Fizzy"
         email_placeholder: "Email address"
@@ -32,6 +38,9 @@ en:
         save_changes: "Save changes"
         go_back: "Go back"
     imports:
+      new:
+        page_title: "Import an account"
+        heading: "Import a Fizzy account"
       show:
         page_title: "Import status"
         heading: "Import status"
@@ -41,7 +50,35 @@ en:
         failed: "Your import failed."
         failed_hint: "This may be due to corrupted export data or a conflict with existing data. Please try again with a fresh export."
         try_again: "Try again"
+    exports:
+      show:
+        page_title_ready: "Download Export"
+        page_title_expired: "Download Expired"
+        ready_message: "Your export is ready. The download should start automatically."
+        download_link: "Download your data"
+        expired_message: "That download link has expired. You'll need to %{link}."
+        request_new_export: "request a new export"
+        back_to: "Account Settings"
     settings:
+      show:
+        page_title: "Account Settings"
+        only_admins_notice: "Only admins can change these settings"
+      people_on_account: "People on this account"
+      invite_people: "Invite people"
+      name_placeholder: "Account name…"
+      save_changes_sr: "Save changes"
+      remove_person_confirm: "Are you sure you want to permanently remove this person from the account?"
+      remove_person_sr: "Remove %{name} from the account"
+      delete_my_account: "Delete my account"
+      cancellation:
+        section_heading: "Cancel account"
+        section_intro: "Delete your Fizzy account"
+        open_button: "Delete account"
+        dialog_heading: "Delete your account?"
+        bullet_all_lose_access: "All users, including you, will lose access"
+        bullet_subscription_canceled: "Your subscription will be canceled"
+        bullet_data_deleted: "After 30 days your data will be permanently deleted"
+        cancel_button: "Cancel"
       export:
         section_title: "Export account data"
         section_intro: "Download a complete archive of all account data."

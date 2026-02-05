@@ -15,12 +15,12 @@
     <%= render "reactions/menu" %>
 
     <%= form.button class: "reaction__submit-btn btn btn--circle borderless", type: "submit", data: { form_target: "submit" } do %>
-      <%= icon_tag "check-circle" %> <span class="for-screen-reader">Submit</span>
+      <%= icon_tag "check-circle" %> <span class="for-screen-reader"><%= t("reactions.new.submit") %></span>
     <% end %>
 
     <%= link_to polymorphic_path([ *reaction_path_prefix_for(@reactable), :reactions ]), role: "button",
           data: { turbo_frame: dom_id(@reactable, :reacting), form_target: "cancel" }, class: "reaction__cancel-btn btn btn--circle borderless" do %>
-      <%= icon_tag "close-circle" %> <span class="for-screen-reader">Cancel</span>
+      <%= icon_tag "close-circle" %> <span class="for-screen-reader"><%= t("reactions.new.cancel") %></span>
     <% end %>
   <% end %>
 <% end %>

@@ -25,6 +25,8 @@ en:
         dev_badge: "DEV"
     menus:
       show:
+        page_title: "Choose an account"
+        your_accounts: "Your Fizzy accounts"
         hmm: "Hmm..."
         no_accounts: "You don't have any Fizzy accounts."
         sign_up_new: "Sign up for a new Fizzy account"
