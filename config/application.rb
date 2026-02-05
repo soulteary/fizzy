@@ -26,5 +26,10 @@ module Fizzy
     end
 
     config.mission_control.jobs.http_basic_auth_enabled = false
+
+    config.i18n.default_locale = :en
+    # Fallback to default locale is enabled via config.i18n.fallbacks (e.g. true in production).
+    # config.i18n.fallback_locales is not set to avoid I18n.fallback_locales= when the gem only provides fallbacks=
+    config.i18n.available_locales = [:en]
   end
 end
