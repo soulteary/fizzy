@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
@@ -9,10 +8,20 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.4.7
-FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
+FROM ghcr.io/ruby/ruby:$RUBY_VERSION-noble AS base
 
 # Rails app lives here
 WORKDIR /rails
+
+RUN set -eux; \
+    file="/etc/apt/sources.list.d/ubuntu.sources"; \
+    base="https://mirrors.tuna.tsinghua.edu.cn"; \
+    arch="$(dpkg --print-architecture)"; \
+    case "$arch" in amd64|i386) repo="ubuntu" ;; *) repo="ubuntu-ports" ;; esac; \
+    sed -E -i "s|^URIs:\s*.*$|URIs: ${base}/${repo}|g" "$file"; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends ca-certificates curl; \
+    rm -rf /var/lib/apt/lists/*
 
 # Install base packages
 RUN apt-get update -qq && \
@@ -67,9 +76,10 @@ LABEL org.opencontainers.image.source="${OCI_SOURCE}"
 LABEL org.opencontainers.image.licenses="O'Saasy"
 
 # Run and own only the runtime files as a non-root user for security
-RUN groupadd --system --gid 1000 rails && \
-    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
-USER 1000:1000
+# Only create group/user when missing so we don't conflict with base image (e.g. GID 1000 in noble)
+RUN (getent group rails > /dev/null 2>&1 || groupadd --system rails) && \
+    (getent passwd rails > /dev/null 2>&1 || useradd rails --gid rails --create-home --shell /bin/bash)
+USER rails:rails
 
 # Copy built artifacts: gems, application
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
@@ -81,3 +91,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
 CMD ["./bin/thrust", "./bin/rails", "server"]
+
