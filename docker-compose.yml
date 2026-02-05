@@ -44,6 +44,11 @@ services:
 
       CSP_MANIFEST_SRC: "https://auth.lab.dev"
       PWA_MANIFEST_BASE_URL: https://fizzy.lab.dev
+
+      DISABLE_EXPORT_DATA: true
+      # hide all emails elements
+      HIDE_EMAILS: true
+
     volumes:
       - ./fizzy_storage:/rails/storage
     env_file:

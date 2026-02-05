@@ -50,6 +50,7 @@ zh:
         page_title: "通知设置"
         boards: "看板"
       push_notifications:
+        status_prefix: "推送通知"
         on: "开"
         off: "关"
         turn_on: "在此设备上开启推送通知"

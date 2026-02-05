@@ -17,6 +17,8 @@ en:
     load_page_aria: "Load page %{number}"
     messages_aria: "Messages"
     need_help_html: "Need help? %{link}."
+    email_hidden: "••••••@••••••.•••"
+    your_email: "your email"
     colophon_fizzy: "Fizzy™"
     colophon_designed_by: "is designed, built, and backed by"
     colophon_37signals: "37signals™"

@@ -50,6 +50,7 @@ en:
         page_title: "Notification Settings"
         boards: "Boards"
       push_notifications:
+        status_prefix: "Push notifications are"
         on: "ON"
         off: "OFF"
         turn_on: "Turn ON push notifications on this device"

@@ -17,6 +17,8 @@ zh:
     load_page_aria: "加载第 %{number} 页"
     messages_aria: "消息"
     need_help_html: "需要帮助？%{link}。"
+    email_hidden: "••••••@••••••.•••"
+    your_email: "您的邮箱"
     colophon_fizzy: "Fizzy™"
     colophon_designed_by: "由以下团队设计、开发与支持："
     colophon_37signals: "37signals™"

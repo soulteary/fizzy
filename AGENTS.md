@@ -146,6 +146,10 @@ Allow people to move between OSS and SAAS Fizzy instances:
 - Must be able to handle very large ZIP files (500+GB)
 - Models in `app/models/account/data_transfer/`, `app/models/zip_file`
 
+**Disable export data**: Set `DISABLE_EXPORT_DATA=true` to turn off and hide all export functionality (account export and user data export). UI is hidden and export endpoints return 404. See `Fizzy.export_data_enabled?` in `lib/fizzy.rb`.
+
+**Hide emails**: Set `HIDE_EMAILS=true` to hide user email addresses across the UI (profile, account settings, board access, magic link hint, API). Emails are replaced with a placeholder (e.g. `••••••@••••••.•••`). Does not affect mail delivery or login/signup form inputs. See `Fizzy.hide_emails?` and `display_email` helper in `lib/fizzy.rb` and `app/helpers/application_helper.rb`.
+
 ## Tools
 
 ### Chrome MCP (Local Dev)

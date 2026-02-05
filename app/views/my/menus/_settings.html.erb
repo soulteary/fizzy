@@ -4,10 +4,12 @@
   <%= filter_place_menu_item notifications_path, t("filters.my.settings.all_notifications"), "bell" %>
   <%= filter_place_menu_item notifications_settings_path, t("notifications.settings.show.page_title"), "settings" %>
 
-  <%= tag.li class: "popup__item", data: { filter_target: "item", navigable_list_target: "item" } do %>
-    <%= icon_tag "logout", class: "popup__icon" %>
-    <%= button_to session_path(script_name: nil), method: :delete, class: "popup__btn btn", data: { turbo: false } do %>
-      <span><%= t("my.menus.sign_out") %></span>
+  <% unless forward_auth_enabled? %>
+    <%= tag.li class: "popup__item", data: { filter_target: "item", navigable_list_target: "item" } do %>
+      <%= icon_tag "logout", class: "popup__icon" %>
+      <%= button_to session_path(script_name: nil), method: :delete, class: "popup__btn btn", data: { turbo: false } do %>
+        <span><%= t("my.menus.sign_out") %></span>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

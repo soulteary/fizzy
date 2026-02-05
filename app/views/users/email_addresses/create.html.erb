@@ -8,7 +8,7 @@
 
 <div class="panel panel--centered flex flex-column gap-half" style="--panel-size: 50ch;">
   <h1 class="txt-x-large font-weight-black margin-none"><%= t("users.email_addresses.check_email") %></h1>
-  <p class="margin-none"><%= t("users.email_addresses.sent_to", email: content_tag(:strong, params[:email_address])).html_safe %></p>
+  <p class="margin-none"><%= t("users.email_addresses.sent_to", email: content_tag(:strong, display_email_in_sentence(params[:email_address]))).html_safe %></p>
   <p class="margin-none-block-start margin-block-end-half"><%= t("users.email_addresses.hit_link") %></p>
 
   <%= link_to t("shared.done"), edit_user_path(@user, script_name: @user.account.slug), class: "btn btn--link center" %>

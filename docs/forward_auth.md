@@ -86,6 +86,9 @@ If both are configured, the request must satisfy both (IP in list and secret hea
 - **Session**  
   If `FORWARD_AUTH_CREATE_SESSION` is `true`, the first successful Forward Auth login creates a Fizzy session and sets the cookie. WebSockets (ActionCable) and subsequent page loads then use the cookie and do not need the Forward Auth headers.
 
+- **Logout**  
+  When Forward Auth is enabled, the sign-out (logout) action is disabled: the logout button is hidden in the UI (settings menu and user profile), and requests to the session destroy endpoint are rejected (HTML is redirected back, JSON returns 404). Users are expected to sign out at the gateway (e.g. Stargate) instead.
+
 - **Logging**  
   Successful Forward Auth logins are logged (e.g. identity id and email) for audit; secrets and tokens are not logged.
 

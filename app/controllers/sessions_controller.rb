@@ -19,6 +19,14 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    if forward_auth_enabled?
+      respond_to do |format|
+        format.html { redirect_back fallback_location: root_path(script_name: nil), allow_other_host: false }
+        format.json { head :not_found }
+      end
+      return
+    end
+
     terminate_session
 
     respond_to do |format|
@@ -28,6 +36,11 @@ class SessionsController < ApplicationController
   end
 
   private
+    def forward_auth_enabled?
+      cfg = Rails.application.config.forward_auth
+      cfg.is_a?(ForwardAuth::Config) && cfg.enabled?
+    end
+
     def magic_link_from_sign_in_or_sign_up
       if identity = Identity.find_by_email_address(email_address)
         identity.send_magic_link

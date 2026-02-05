@@ -67,7 +67,7 @@ export default class extends Controller {
   }
 
   cancel() {
-    this.cancelTarget?.click()
+    if (this.hasCancelTarget) this.cancelTarget.click()
   }
 
   preventAttachment(event) {

@@ -32,23 +32,16 @@
           <%= form.text_field :name, class: "input full-width", autocomplete: "name", placeholder: t("users.edit.name_placeholder"), autofocus: true, required: true, data: { "1p-ignore": true, action: "keydown.esc@document->form#cancel" } %>
         </label>
       </div>
-      <div class="flex align-center gap">
-        <div class="flex align-center gap input input--actor">
-          <%= form.email_field :email_address, class: "input full-width", autocomplete: "username", placeholder: t("users.edit.email_address"), required: true, readonly: true, value: @user.identity.email_address %>
-          <% unless @user.identity.respond_to?(:email_locked?) && @user.identity.email_locked? %>
-            <%= link_to t("users.edit.change_email"), new_user_email_address_path(user_id: Current.user.id), class: "btn btn--plain txt-link txt-small txt-nowrap" %>
-          <% end %>
+      <% if show_email_in_ui? %>
+        <div class="flex align-center gap">
+          <div class="flex align-center gap input input--actor">
+            <%= form.email_field :email_address, class: "input full-width", autocomplete: "username", placeholder: t("users.edit.email_address"), required: true, readonly: true, value: @user.identity.email_address %>
+            <% unless @user.identity.respond_to?(:email_locked?) && @user.identity.email_locked? %>
+              <%= link_to t("users.edit.change_email"), new_user_email_address_path(user_id: Current.user.id), class: "btn btn--plain txt-link txt-small txt-nowrap" %>
+            <% end %>
+          </div>
         </div>
-      </div>
-
-      <div class="flex align-center gap">
-        <%= form_with url: my_locale_path, method: :patch, class: "flex align-center gap input input--actor", data: { controller: "form" } do |locale_form| %>
-          <label class="flex align-center gap" style="flex: 1;">
-            <span class="txt-small" style="min-width: 6ch;"><%= t("locales.language") %></span>
-            <%= locale_form.select :locale, options_for_select(available_locales_for_select, Current.identity.locale.presence || I18n.default_locale.to_s), {}, class: "input full-width", data: { action: "change->form#submit" } %>
-          </label>
-        <% end %>
-      </div>
+      <% end %>
 
       <% if @user.errors.any? %>
         <div class="margin-block-half txt-negative txt-small" style="text-align: left;">
@@ -67,6 +60,15 @@
 
       <%= link_to t("shared.cancel_and_go_back"), user_path(@user), data: { form_target: "cancel", turbo_frame: "_top" }, hidden: true %>
     <% end %>
+
+    <div class="flex align-center gap input input--actor">
+      <%= form_with url: my_locale_path, method: :patch, class: "flex align-center gap", style: "flex: 1;", data: { controller: "form" } do |locale_form| %>
+        <label class="flex align-center gap" style="flex: 1;">
+          <span class="txt-small" style="min-width: 6ch;"><%= t("locales.language") %></span>
+          <%= locale_form.select :locale, options_for_select(available_locales_for_select, Current.identity.locale.presence || I18n.default_locale.to_s), {}, class: "input full-width", data: { action: "change->form#submit" } %>
+        </label>
+      <% end %>
+    </div>
 
     <%= form_with url: user_avatar_url(@user), method: :delete, id: "avatar-delete-form" %>
   </div>

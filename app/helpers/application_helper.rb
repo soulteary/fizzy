@@ -26,4 +26,29 @@ module ApplicationHelper
       icon_tag("arrow-left") + tag.strong(t("shared.back_to_label", label: label), class: "overflow-ellipsis") + tag.kbd("ESC", class: "txt-x-small hide-on-touch").html_safe
     end
   end
+
+  # When true, Forward Auth is enabled and logout should be hidden/disabled.
+  def forward_auth_enabled?
+    cfg = Rails.application.config.forward_auth
+    cfg.is_a?(ForwardAuth::Config) && cfg.enabled?
+  end
+
+  # When false, do not render any email display in the UI (hide email elements).
+  def show_email_in_ui?
+    !Fizzy.hide_emails?
+  end
+
+  # Returns the email to display in the UI. When Fizzy.hide_emails? is true, returns blank so elements can be hidden.
+  def display_email(email)
+    return "" if email.blank?
+    return "" if Fizzy.hide_emails?
+    email.to_s
+  end
+
+  # For use in sentences like "Sent to …". When hiding, returns a generic "your email" so the sentence still reads well.
+  def display_email_in_sentence(email)
+    return "" if email.blank?
+    return t("shared.your_email") if Fizzy.hide_emails?
+    email.to_s
+  end
 end

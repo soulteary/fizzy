@@ -15,7 +15,7 @@
         data: { magic_link_target: "input", action: "keydown.enter->magic-link#submitOnEnter paste->magic-link#submitOnPaste" } %>
   <% end %>
 
-  <p class="txt-small txt-balance"><%= t("sessions.magic_links.show.code_expires_html", email: email_address_pending_authentication, duration: distance_of_time_in_words(MagicLink::EXPIRATION_TIME)).html_safe %></p>
+  <p class="txt-small txt-balance"><%= t("sessions.magic_links.show.code_expires_html", email: display_email_in_sentence(email_address_pending_authentication), duration: distance_of_time_in_words(MagicLink::EXPIRATION_TIME)).html_safe %></p>
 </div>
 
 <% if Rails.env.development? && flash[:magic_link_code].present? %>

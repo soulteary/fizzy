@@ -76,6 +76,20 @@ class Account::ExportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "h2", "Download Expired"
   end
 
+  test "create and show return not_found when export data is disabled" do
+    Fizzy.instance_variable_set(:@export_data_enabled, false)
+
+    post account_exports_path
+    assert_response :not_found
+
+    export = Account::Export.create!(account: Current.account, user: users(:jason))
+    export.build
+    get account_export_path(export)
+    assert_response :not_found
+  ensure
+    Fizzy.remove_instance_variable(:@export_data_enabled) if Fizzy.instance_variable_defined?(:@export_data_enabled)
+  end
+
   test "create is forbidden for non-admin members" do
     logout_and_sign_in_as :david
 

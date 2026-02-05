@@ -1,4 +1,5 @@
 class Users::DataExportsController < ApplicationController
+  before_action :ensure_export_enabled
   before_action :set_user
   before_action :ensure_current_user
   before_action :ensure_export_limit_not_exceeded, only: :create
@@ -15,6 +16,10 @@ class Users::DataExportsController < ApplicationController
   end
 
   private
+    def ensure_export_enabled
+      head :not_found unless Fizzy.export_data_enabled?
+    end
+
     def set_user
       @user = Current.account.users.find(params[:user_id])
     end

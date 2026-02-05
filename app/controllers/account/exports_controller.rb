@@ -1,4 +1,5 @@
 class Account::ExportsController < ApplicationController
+  before_action :ensure_export_enabled
   before_action :ensure_admin_or_owner
   before_action :ensure_export_limit_not_exceeded, only: :create
   before_action :set_export, only: :show
@@ -14,6 +15,10 @@ class Account::ExportsController < ApplicationController
   end
 
   private
+    def ensure_export_enabled
+      head :not_found unless Fizzy.export_data_enabled?
+    end
+
     def ensure_admin_or_owner
       head :forbidden unless Current.user.admin? || Current.user.owner?
     end

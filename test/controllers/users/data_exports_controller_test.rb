@@ -67,6 +67,20 @@ class Users::DataExportsControllerTest < ActionDispatch::IntegrationTest
     assert_select "h2", "Download Expired"
   end
 
+  test "create and show return not_found when export data is disabled" do
+    Fizzy.instance_variable_set(:@export_data_enabled, false)
+
+    post user_data_exports_path(@user)
+    assert_response :not_found
+
+    export = @user.data_exports.create!(account: Current.account)
+    export.build
+    get user_data_export_path(@user, export)
+    assert_response :not_found
+  ensure
+    Fizzy.remove_instance_variable(:@export_data_enabled) if Fizzy.instance_variable_defined?(:@export_data_enabled)
+  end
+
   test "create is forbidden for other users" do
     other_user = users(:kevin)
 
