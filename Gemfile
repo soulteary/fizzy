@@ -4,6 +4,9 @@ git_source(:bc) { |repo| "https://github.com/basecamp/#{repo}" }
 
 gem "rails", github: "rails/rails", branch: "main"
 
+# This Rails revision still passes positional JSON parser options.
+gem "json", ">= 2.21.2", "< 3"
+
 # Assets & front end
 gem "importmap-rails"
 gem "propshaft"
