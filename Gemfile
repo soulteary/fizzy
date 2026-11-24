@@ -30,8 +30,8 @@ gem "rouge"
 gem "jbuilder"
 gem "lexxy", bc: "lexxy"
 gem "image_processing", "~> 2.2"
-gem "mini_magick", "~> 5.3"
-gem "ruby-vips", "~> 2.3"
+gem "mini_magick", "~> 5.3", require: false
+gem "ruby-vips", "~> 2.3", require: false
 gem "platform_agent"
 gem "aws-sdk-s3", require: false
 gem "web-push"
